@@ -1,0 +1,29 @@
+apiVersion: inference.networking.x-k8s.io/v1alpha2
+kind: InferenceModel
+metadata:
+  name: lora1
+spec:
+  modelName: lora1
+  criticality: Standard
+  poolRef:
+    name: inference-router-demo
+---
+apiVersion: inference.networking.x-k8s.io/v1alpha2
+kind: InferenceModel
+metadata:
+  name: lora2
+spec:
+  modelName: lora2
+  criticality: Standard
+  poolRef:
+    name: inference-router-demo
+---
+apiVersion: inference.networking.x-k8s.io/v1alpha2
+kind: InferenceModel
+metadata:
+  name: lora3
+spec:
+  modelName: lora3
+  criticality: Standard
+  poolRef:
+    name: inference-router-demo

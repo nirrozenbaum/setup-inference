@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm-sim1
+  labels:
+    app: vllm-sim
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vllm-sim
+  template:
+    metadata:
+      labels:
+        app: vllm-sim
+        ai-aware-router-pod: "true"
+    spec:
+      containers:
+      - name: vllm
+        image: vllm-sim/vllm-sim:0.0.2
+        args:
+        - "--port=8000"
+        - "--model=my_base_model"
+        - "--lora=lora1,lora2"
+        ports:
+          - containerPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm-sim2
+  labels:
+    app: vllm-sim
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vllm-sim
+  template:
+    metadata:
+      labels:
+        app: vllm-sim
+        ai-aware-router-pod: "true"
+    spec:
+      containers:
+      - name: vllm
+        image: vllm-sim/vllm-sim:0.0.2
+        args:
+        - "--port=8000"
+        - "--model=my_base_model"
+        - "--lora=lora2,lora3"
+        ports:
+          - containerPort: 8000
